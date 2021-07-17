@@ -1,0 +1,19 @@
+.pdf-button {
+    font-size: medium;
+    padding: 12px;
+    margin-bottom: 20px;
+    position: relative;
+    left: 45%;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.pdf-button:hover {
+    background-color: lightcoral;
+}
+.pdf-button:active {
+    background-color: #ca7a8c;
+    box-shadow: 0 5px rgb(226, 59, 176);
+    transform: translateY(4px);
+}

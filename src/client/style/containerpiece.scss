@@ -1,0 +1,33 @@
+.container {
+    background-color: aqua;
+    margin: 40px 55px;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    //display: none;
+}
+
+form {
+    padding:30px;
+}
+
+#destination-button {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: green;
+    font-size: medium;
+    align-items: center;
+}
+
+.destination_display {
+    background-color: white;
+    padding: 10px;
+}
+
+li {
+    margin: 10px;
+}

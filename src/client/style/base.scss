@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #fff;
+    color: #555;
+    font-size: 18px;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    height: 100vh;
+    animation: bgchange 10s infinite;
+}
+
+@keyframes bgchange {
+    0% {background-color: rgb(44, 34, 133);}
+    20% {background-color: rgb(31, 170, 180);}
+    40% {background-color: rgb(34, 113, 133);}
+    60% {background-color: rgb(57, 39, 219);}
+    80% {background-color: rgb(125, 34, 133);}
+    100% {background-color: rgb(44, 34, 133);}
+
+}
