@@ -37,20 +37,21 @@ const thirdApi = async function(picLoc) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
   const resJ = await res.json()
   console.log(resJ.hits[0].webformatURL)
+  //return resJ.hits[0].webformatURL
 }
 
-// const updateTravelUI = async () => {
-//   const request = await fetch('/all');
-//   try{
-//     const allData = await request.json();
-//     document.getElementById('date').innerHTML = allData.date;
-//     document.getElementById('temp').innerHTML = allData.temp;
-//     document.getElementById('des').innerHTML = allData.des;
+const updateTravelUI = async () => {
+  const request = await fetch(findDestion);
+  try{
+    const allData = await request.json();
+    document.getElementById('itemOne').innerHTML = allData.data;
+    // document.getElementById('temp').innerHTML = allData.temp;
+    // document.getElementById('des').innerHTML = allData.des;
 
-//   }catch(error){
-//     console.log("error", error);
-//   }
-// }
+  }catch(error){
+    console.log("error", error);
+  }
+}
 
 const postTravelData = async ( url = '', data = {}) => {
     console.log(data)
