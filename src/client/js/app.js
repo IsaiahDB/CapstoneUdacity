@@ -8,16 +8,17 @@ const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
 
 let VacationData = {}
 
-travelBtn.addEventListener('click', findDestion())
+travelBtn.addEventListener('click', findDestion)
 
 
 export async function findDestion(e) {
   e.preventDefault()
   const locationValue = document.getElementById('F1').value;
   await firstApi(locationValue)
-  await postTravelData(VacationData)
+  await postData(VacationData)
   console.log(VacationData) 
 }
+
 
 
 const firstApi = async function(location) {
@@ -27,8 +28,8 @@ const firstApi = async function(location) {
   const geoLng = Math.round(resJ.geonames[0].lng)
   VacationData['LatGeo']  = geoLat
   VacationData['LngGeo']  = geoLng
-  console.log(Vacation.LatGeo,Vacation.LngGeo)  
-  return await secApi(LatGeo,LngGeo)
+  console.log(VacationData.LatGeo,VacationData.LngGeo)  
+  return await secApi(geoLat,geoLng)
 }
 
 const secApi = async function(lat, lon) {
@@ -36,7 +37,7 @@ const secApi = async function(lat, lon) {
   const resJ = await res.json();
   const nameOfCity = resJ.data[0].city_name
   VacationData['cityName'] = nameOfCity
-  console.log(Vacation.cityName)
+  console.log(VacationData.cityName)
   return await thirdApi(nameOfCity)
 }
 
@@ -49,20 +50,20 @@ const thirdApi = async function(picLoc) {
 }
 
 
-const postTravelData = async (data) => {
+async function postData(data) {
     console.log(data)
-      const response = await fetch("http://localhost:8080/TravelData", {
+      const res = await fetch("http://localhost:8080/TravelData", {
         method: 'POST', 
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
        // Body data type must match "Content-Type" header        
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     });
-
+    console.log(res)
       try {
-        const newTravelData = await response.json();
+        const newTravelData = await res.json();
         console.log(newTravelData);
         return newTravelData;
       }catch(error) {
@@ -70,4 +71,5 @@ const postTravelData = async (data) => {
     }
   
   }
+  
 
