@@ -30,12 +30,18 @@ app.get('/all', function sendData(request,response ){
     response.send(projectData)
 });
 
+const geoUser = process.env.GEO_USER  //'isaiah'
+const wApi = process.env.WEATHER_API_KEY   //'74c95ff83482407db3c55956cd979f60'
+const pApi = process.env.PIXABY_API_KEY  //'13827219-eabca8d6c1f49e20bd7fd6c27'
 
-app.post('/TravelData', TravelData);
+
+app.post('/GeoLocation', GeoLocation);
 function TravelData(req, res) {
     let data = req.body;
     console.log('getting server data', data)
     projectData['geoLan'] = data;
     response.send(projectData)
 }
+
+module.exports = app;
 

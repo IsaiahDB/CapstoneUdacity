@@ -1,6 +1,5 @@
 
 import { findDestion } from './js/app';
-
 export {
     findDestion
 }

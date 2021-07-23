@@ -2,9 +2,6 @@ const travelBtn = document.getElementById('destination-button')
 //const formOne = document.getElementById('F1')
 const formTwo = document.getElementById('F2')
 const formThree = document.getElementById('F3')
-const geoUser = process.env.GEO_USER  //'isaiah'
-const wApi = process.env.WEATHER_API_KEY   //'74c95ff83482407db3c55956cd979f60'
-const pApi = process.env.PIXABY_API_KEY  //'13827219-eabca8d6c1f49e20bd7fd6c27'
 
 travelBtn.addEventListener('click', findDestion)
 
@@ -12,9 +9,7 @@ travelBtn.addEventListener('click', findDestion)
 export function findDestion(e) {
   e.preventDefault()
   const locationValue = document.getElementById('F1').value;
-  return postTravelData(locationValue)
-  //firstApi(locationValue)
-
+  
 }
 
 
