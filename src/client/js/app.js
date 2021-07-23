@@ -13,13 +13,11 @@ travelBtn.addEventListener('click', findDestion)
 
 export async function findDestion(e) {
   e.preventDefault()
-  const locationValue = document.getElementById('F1').value;
+  let locationValue = document.getElementById('F1').value;
   await firstApi(locationValue)
   await postData(VacationData)
   console.log(VacationData) 
 }
-
-
 
 const firstApi = async function(location) {
   const res = await fetch(`http://api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${geoUser}`)
