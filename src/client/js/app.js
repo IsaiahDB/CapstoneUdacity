@@ -12,7 +12,8 @@ travelBtn.addEventListener('click', findDestion)
 export function findDestion(e) {
   e.preventDefault()
   const locationValue = document.getElementById('F1').value;
-  firstApi(locationValue)
+  return postTravelData(locationValue)
+  //firstApi(locationValue)
 
 }
 
@@ -42,9 +43,9 @@ const thirdApi = async function(picLoc) {
 }
 
 
-const postTravelData = async ( url = '', data = {}) => {
+const postTravelData = async (data) => {
     console.log(data)
-      const response = await fetch(url, {
+      const response = await fetch("http://localhost:8080/TravelData", {
         method: 'POST', 
         credentials: 'same-origin',
         headers: {
@@ -53,7 +54,7 @@ const postTravelData = async ( url = '', data = {}) => {
        // Body data type must match "Content-Type" header        
         body: JSON.stringify(data)
     });
-  
+
       try {
         const newTravelData = await response.json();
         console.log(newTravelData);

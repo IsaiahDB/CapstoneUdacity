@@ -36,7 +36,6 @@ function TravelData(req, res) {
     let data = req.body;
     console.log('getting server data', data)
     projectData['geoLan'] = data;
-
     response.send(projectData)
 }
 
