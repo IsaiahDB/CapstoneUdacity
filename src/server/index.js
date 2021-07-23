@@ -47,3 +47,5 @@ function travelData(req, res) {
     response.send(projectData);
 }
 
+module.exports = app;
+
