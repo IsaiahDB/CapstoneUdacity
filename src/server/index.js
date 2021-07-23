@@ -4,7 +4,7 @@ dotenv.config()
 const path = require("path")
 const express = require("express")
 const fetch = require("node-fetch")
-let projectData ={}
+let projectData = {}
 
 const app = express()
 
