@@ -52,7 +52,7 @@ const thirdApi = async function(picLoc) {
 
 async function postData(data) {
     console.log(data)
-      const res = await fetch("http://localhost:8080/TravelData", {
+      const res = await fetch("http://localhost:8500/all", {
         method: 'POST', 
         credentials: 'same-origin',
         headers: {

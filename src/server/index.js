@@ -22,8 +22,8 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'))
 })
 
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.listen(8500, function () {
+    console.log('Example app listening on port 8500!')
 })
 
 
@@ -37,6 +37,7 @@ const pApi = process.env.PIXABY_API_KEY  //'13827219-eabca8d6c1f49e20bd7fd6c27'
 
 
 app.post('/TravelData', addData);
+
 function addData(req, res) {
     let data = req.body;
     console.log('server side data ', data)
@@ -44,4 +45,5 @@ function addData(req, res) {
 
     response.send(projectData);
 }
+
 
