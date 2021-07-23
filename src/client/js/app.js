@@ -13,6 +13,7 @@ export function findDestion(e) {
   const locationValue = document.getElementById('F1').value;
   await firstApi(locationValue)
   await postTravelData(VacationData)
+  console.log(VacationData)
   
 }
 

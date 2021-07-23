@@ -41,8 +41,9 @@ const pApi = process.env.PIXABY_API_KEY  //'13827219-eabca8d6c1f49e20bd7fd6c27'
 app.post('/TravelData', travelData);
 function travelData(req, res) {
     let data = req.body;
-    
+    console.log('server side data ', data)
+    projectData['general'] = data;
 
-
+    response.send(projectData);
 }
 
