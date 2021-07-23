@@ -13,6 +13,7 @@ export function findDestion(e) {
   e.preventDefault()
   const locationValue = document.getElementById('F1').value;
   firstApi(locationValue)
+
 }
 
 
@@ -21,7 +22,7 @@ const firstApi = async function(location) {
   const resJ = await res.json();
   const LatGeo = Math.round(resJ.geonames[0].lat)
   const LngGeo = Math.round(resJ.geonames[0].lng)
-  console.log(LatGeo,LngGeo)  
+  //console.log(LatGeo,LngGeo)  
   return secApi(LatGeo,LngGeo)
 }
 
@@ -29,29 +30,17 @@ const secApi = async function(lat, lon) {
   const res = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}.6382&key=${wApi}&include=minutely`)
   const resJ = await res.json();
   const cityName = resJ.data[0].city_name
-  console.log(cityName)
+  //console.log(cityName)
   return thirdApi(cityName)
 }
 
 const thirdApi = async function(picLoc) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
   const resJ = await res.json()
-  console.log(resJ.hits[0].webformatURL)
-  //return resJ.hits[0].webformatURL
+  //console.log(resJ.hits[0].webformatURL)
+  return resJ.hits[0].webformatURL
 }
 
-const updateTravelUI = async () => {
-  const request = await fetch(findDestion);
-  try{
-    const allData = await request.json();
-    document.getElementById('itemOne').innerHTML = allData.data;
-    // document.getElementById('temp').innerHTML = allData.temp;
-    // document.getElementById('des').innerHTML = allData.des;
-
-  }catch(error){
-    console.log("error", error);
-  }
-}
 
 const postTravelData = async ( url = '', data = {}) => {
     console.log(data)

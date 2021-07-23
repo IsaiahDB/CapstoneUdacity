@@ -1,9 +1,10 @@
 const dotenv = require("dotenv")
 dotenv.config()
-projectData = {};
 
 const path = require("path")
 const express = require("express")
+const fetch = require("node-fetch")
+const projectData ={}
 
 const app = express()
 
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 const cors = require("cors")
+const { response } = require("express")
 app.use(cors())
 
 app.use(express.static('dist'))
@@ -29,19 +31,12 @@ app.get('/all', function sendData(request,response ){
 });
 
 
-app.post('/add', addData);
-function addData(request, response) {
-    let data = request.body;
-    console.log('server side data', data)
-    projectData['date'] = data.date;
-    projectData['weather'] = data.weather;
-    projectData['photo'] = data.photo
-
-    // projectData["date"] = data;
-    // projectData["temp"] = data;
-    // projectData['des'] = data;
-    // projectData["feelings"] = data;
-    // projectData["content"] = data;
+app.post('/TravelData', TravelData);
+function TravelData(req, res) {
+    let data = req.body;
+    console.log('getting server data', data)
+    projectData['geoLan'] = data;
 
     response.send(projectData)
 }
+

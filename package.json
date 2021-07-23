@@ -28,6 +28,7 @@
     "html-webpack-plugin": "^4.5.2",
     "jest": "^27.0.6",
     "mini-css-extract-plugin": "^1.6.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^6.0.0",
     "sass-loader": "^7.3.1",
