@@ -22,8 +22,8 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'))
 })
 
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.listen(8020, function () {
+    console.log('Example app listening on port 8020!')
 })
 
 
