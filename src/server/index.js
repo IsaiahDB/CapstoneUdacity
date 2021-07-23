@@ -22,8 +22,8 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'))
 })
 
-app.listen(8020, function () {
-    console.log('Example app listening on port 8020!')
+app.listen(8080, function () {
+    console.log('Example app listening on port 8080!')
 })
 
 
@@ -40,7 +40,7 @@ app.post('/TravelData', addData);
 function addData(req, res) {
     let data = req.body;
     console.log('server side data ', data)
-    projectData['general'] = data;
+    projectData['general'] = data.lat;
 
     response.send(projectData);
 }
