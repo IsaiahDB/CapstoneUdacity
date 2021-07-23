@@ -2,19 +2,21 @@ const travelBtn = document.getElementById('destination-button')
 //const formOne = document.getElementById('F1')
 const formTwo = document.getElementById('F2')
 const formThree = document.getElementById('F3')
+const geoUser = 'isaiah'
+const wApi =  '74c95ff83482407db3c55956cd979f60'
+const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
 
 let VacationData = {}
 
-travelBtn.addEventListener('click', findDestion)
+travelBtn.addEventListener('click', findDestion())
 
 
-export function findDestion(e) {
+export async function findDestion() {
   e.preventDefault()
   const locationValue = document.getElementById('F1').value;
   await firstApi(locationValue)
   await postTravelData(VacationData)
-  console.log(VacationData)
-  
+  console.log(VacationData) 
 }
 
 
@@ -68,5 +70,4 @@ const postTravelData = async (data) => {
     }
   
   }
-
 
