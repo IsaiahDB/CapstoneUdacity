@@ -11,7 +11,7 @@ let VacationData = {}
 travelBtn.addEventListener('click', findDestion())
 
 
-export async function findDestion() {
+export async function findDestion(e) {
   e.preventDefault()
   const locationValue = document.getElementById('F1').value;
   await firstApi(locationValue)
