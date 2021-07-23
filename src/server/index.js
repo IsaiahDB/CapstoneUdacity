@@ -26,7 +26,6 @@ app.listen(8080, function () {
     console.log('Example app listening on port 8080!')
 })
 
-
 let projectData ={}
 
 app.get('/all', function sendData(request,response ){
@@ -46,6 +45,4 @@ function travelData(req, res) {
 
     response.send(projectData);
 }
-
-module.exports = app;
 

@@ -62,12 +62,12 @@ async function postData(data) {
         body: JSON.stringify(data),
     });
     console.log(res)
-      try {
-        const newTravelData = await res.json();
-        console.log(newTravelData);
-        return newTravelData;
-      }catch(error) {
-        console.log("error", error);
+    try {
+      const newTravelData = await res.json();
+      console.log(newTravelData);
+      return newTravelData;
+    }catch(error) {
+      console.log("error", error);
     }
   
   }
