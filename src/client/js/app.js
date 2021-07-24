@@ -7,6 +7,10 @@ const wApi =  '74c95ff83482407db3c55956cd979f60'
 const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
 
 //http://api.geonames.org/searchJSON?username=maykeloenning&maxRows=10&q="
+//http://api.geonames.org/searchJSON?q=london&maxRows=10&username=demo
+
+
+
 
 let VacationData = {}
 
@@ -22,7 +26,7 @@ export async function findDestion(e) {
 }
 
 const firstApi = async function(location) {
-  const res = await fetch(`http://api.geonames.org/searchJSON?username=${geoUser}&maxRows=10&p=${geoUser}`)
+  const res = await fetch(`http://api.geonames.org/searchJSON?username=${location}&maxRows=10&p=${geoUser}`)
   const resJ = await res.json();
   const geoLat = Math.round(resJ.geonames[0].lat)
   const geoLng = Math.round(resJ.geonames[0].lng)
@@ -44,7 +48,7 @@ const secApi = async function(lat, lon) {
 const thirdApi = async function(picLoc) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
   const resJ = await res.json()
-  VacationData['locationImage'] = resJ.hits[0].webformatURL
+  VacationData['locationImage'] = resJ.hits[0].previewURL
   console.log(VacationData.locationImage)
   return VacationData
 }
@@ -52,7 +56,7 @@ const thirdApi = async function(picLoc) {
 
 async function postData(data) {
     console.log(data)
-      const res = await fetch("http://localhost:8500/all", {
+      const res = await fetch("http://localhost:8080/TravelData", {
         method: 'POST', 
         credentials: 'same-origin',
         headers: {
