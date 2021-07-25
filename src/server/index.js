@@ -31,19 +31,21 @@ app.get('/all', function sendData(request,response ){
     response.send(projectData)
 });
 
-const geoUser = process.env.GEO_USER  //'isaiah'
-const wApi = process.env.WEATHER_API_KEY   //'74c95ff83482407db3c55956cd979f60'
-const pApi = process.env.PIXABY_API_KEY  //'13827219-eabca8d6c1f49e20bd7fd6c27'
+// const geoUser = process.env.GEO_USER  //'isaiah'
+// const wApi = process.env.WEATHER_API_KEY   //'74c95ff83482407db3c55956cd979f60'
+// const pApi = process.env.PIXABY_API_KEY  //'13827219-eabca8d6c1f49e20bd7fd6c27'
 
 
-app.post('/TravelData', addData);
-
+app.post('/vactionData', addData);
 function addData(req, res) {
     let data = req.body;
     console.log('server side data ', data)
-    projectData['general'] = data.lat;
+    projectData['lattitude'] = data.lat;
+    projectData['longitutde'] = data.lng;
+    projectData['city'] = data.city;
+    projectData['image'] = data.image;
 
-    response.send(projectData);
+    res.send(projectData);
 }
 
 

@@ -10,8 +10,6 @@ const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
 //http://api.geonames.org/searchJSON?q=london&maxRows=10&username=demo
 
 
-
-
 let VacationData = {}
 
 travelBtn.addEventListener('click', findDestion)
@@ -26,7 +24,7 @@ export async function findDestion(e) {
 }
 
 const firstApi = async function(location) {
-  const res = await fetch(`http://api.geonames.org/searchJSON?username=${location}&maxRows=10&p=${geoUser}`)
+  const res = await fetch(`http://api.geonames.org/searchJSON?username=${geoUser}&maxRows=10&q=${location}`)
   const resJ = await res.json();
   const geoLat = Math.round(resJ.geonames[0].lat)
   const geoLng = Math.round(resJ.geonames[0].lng)
@@ -56,14 +54,14 @@ const thirdApi = async function(picLoc) {
 
 async function postData(data) {
     console.log(data)
-      const res = await fetch("http://localhost:8080/TravelData", {
+      const res = await fetch("http://localhost:8080/vactionData", {
         method: 'POST', 
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
        // Body data type must match "Content-Type" header        
-        body: JSON.stringify(data),
+        body: JSON.stringify({data:data}),
     });
     console.log(res)
     try {
