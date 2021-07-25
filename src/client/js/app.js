@@ -2,9 +2,11 @@ const travelBtn = document.getElementById('destination-button')
 //const formOne = document.getElementById('F1')
 const formTwo = document.getElementById('F2')
 const formThree = document.getElementById('F3')
-const geoUser = 'isaiah'
-const wApi =  '74c95ff83482407db3c55956cd979f60'
-const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
+
+const geoUser = process.env.GEO_USER  
+const wApi = process.env.WEATHER_API_KEY   
+const pApi = process.env.PIXABY_API_KEY 
+
 
 //http://api.geonames.org/searchJSON?username=maykeloenning&maxRows=10&q="
 //http://api.geonames.org/searchJSON?q=london&maxRows=10&username=demo
@@ -46,7 +48,7 @@ const secApi = async function(lat, lon) {
 const thirdApi = async function(picLoc) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
   const resJ = await res.json()
-  VacationData['locationImage'] = resJ.hits[0].previewURL
+  VacationData['locationImage'] = resJ.hits[0].webformatURL
   console.log(VacationData.locationImage)
   return VacationData
 }
