@@ -30,22 +30,45 @@ const firstApi = async function(location) {
   const resJ = await res.json();
   const geoLat = Math.round(resJ.geonames[0].lat)
   const geoLng = Math.round(resJ.geonames[0].lng)
+  const geoCountry = resJ.geonames[0].countryCode
+  const geoName = resJ.geonames[0].name
   VacationData['LatGeo']  = geoLat
   VacationData['LngGeo']  = geoLng
   console.log(VacationData.LatGeo,VacationData.LngGeo)  
-  return await secApi(geoLat,geoLng)
+  return await secApi(geoLat,geoLng,geoName,geoCountry)
 }
 
-const secApi = async function(lat, lon) {
-  const res = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}.6382&key=${wApi}&include=minutely`)
+const secApi = async function(lat, lon,country,code) {
+  const res = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&city=${country}&country=${code}&key=${wApi}&include=minutely`)
   const resJ = await res.json();
   const nameOfCity = resJ.data[0].city_name
+  const codeOfCountry = resJ.data[0].country_code
+  const weatherDes = resJ.data[0].weather.description
+  const iconWeather = resJ.data[0].weather.icon
+  const cityLatitude = Math.round(resJ.data[0].lat)
+  const cityLongitude = Math.round(resJ.data[0].lon)
   VacationData['cityName'] = nameOfCity
-  console.log(VacationData.cityName)
-  return await thirdApi(nameOfCity)
+  VacationData['countryCode'] = codeOfCountry
+  VacationData['description'] = weatherDes
+  VacationData['icon'] = iconWeather
+  console.log(VacationData.cityName, VacationData.countryCode,VacationData.description,VacationData.icon)
+  return await thirdApi(cityLatitude,cityLongitude,nameOfCity,codeOfCountry)
 }
 
-const thirdApi = async function(picLoc) {
+const thirdApi = async function(lat,lon,city,country) {
+  const res = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&city=${city}&country=${country}&key=${wApi}`)
+  const resJ = await res.json();
+  const cityName = res.city_name
+  const dayOne = res.data[0]
+  const daySixteen = res.data[16]
+  VacationData['dayOne'] = dayOne
+  VacationData['daySixteen'] = daySixteen
+  console.log(VacationData.dayOne,VacationData.daySixteen)
+  return await fourthApi(cityName)
+
+}
+
+const fourthApi = async function(picLoc) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
   const resJ = await res.json()
   // if(resJ.hits[0].webformatURL === 'undefined'){

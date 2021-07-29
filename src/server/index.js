@@ -40,6 +40,11 @@ function addData(req, res) {
     projectData['longitutde'] = data.lng;
     projectData['city'] = data.city;
     projectData['image'] = data.image;
+    projectData['country'] = data.country;
+    projectData['description'] = data.description;
+    projectData['icon'] = data.icon;
+    projectData['OneDay'] = data.one;
+    projectData['SixteenDay'] = data.sixteen;
 
     res.send(projectData);
 }
