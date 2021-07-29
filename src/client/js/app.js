@@ -3,9 +3,13 @@ const travelBtn = document.getElementById('destination-button')
 const formTwo = document.getElementById('F2')
 const formThree = document.getElementById('F3')
 
-const geoUser = process.env.GEO_USER  
-const wApi = process.env.WEATHER_API_KEY   
-const pApi = process.env.PIXABY_API_KEY 
+// const geoUser = process.env.GEO_USER  
+// const wApi = process.env.WEATHER_API_KEY   
+// const pApi = process.env.PIXABY_API_KEY 
+
+const wApi = '74c95ff83482407db3c55956cd979f60'
+const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
+const geoUser = 'isaiah'
 
 
 //http://api.geonames.org/searchJSON?username=maykeloenning&maxRows=10&q="
@@ -38,7 +42,7 @@ const firstApi = async function(location) {
   return await secApi(geoLat,geoLng,geoName,geoCountry)
 }
 
-const secApi = async function(lat, lon,country,code) {
+const secApi = async function(lat,lon,country,code) {
   const res = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&city=${country}&country=${code}&key=${wApi}&include=minutely`)
   const resJ = await res.json();
   const nameOfCity = resJ.data[0].city_name
@@ -59,8 +63,8 @@ const thirdApi = async function(lat,lon,city,country) {
   const res = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&city=${city}&country=${country}&key=${wApi}`)
   const resJ = await res.json();
   const cityName = res.city_name
-  const dayOne = res.data[0]
-  const daySixteen = res.data[16]
+  const dayOne = res.data[0].weather.description
+  const daySixteen = res.data[8].weather.description
   VacationData['dayOne'] = dayOne
   VacationData['daySixteen'] = daySixteen
   console.log(VacationData.dayOne,VacationData.daySixteen)
@@ -76,7 +80,7 @@ const fourthApi = async function(picLoc) {
   // } else {
   //   VacationData['locationImage'] = resJ.hits[0].webformatURL 
   // }
-  VacationData['locationImage'] = resJ.hits[0].webformatURL 
+  VacationData['locationImage'] = resJ.hits[0].previewURL 
   console.log(VacationData.locationImage)
   return VacationData
 }
