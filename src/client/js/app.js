@@ -48,7 +48,12 @@ const secApi = async function(lat, lon) {
 const thirdApi = async function(picLoc) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
   const resJ = await res.json()
-  VacationData['locationImage'] = resJ.hits[0].webformatURL
+  // if(resJ.hits[0].webformatURL === 'undefined'){
+  //   VacationData['locationImage'] = "no photo"
+  // } else {
+  //   VacationData['locationImage'] = resJ.hits[0].webformatURL 
+  // }
+  VacationData['locationImage'] = resJ.hits[0].webformatURL 
   console.log(VacationData.locationImage)
   return VacationData
 }

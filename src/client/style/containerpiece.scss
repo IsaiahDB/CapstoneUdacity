@@ -21,12 +21,19 @@ form {
     background-color: green;
     font-size: medium;
     align-items: center;
+    text-decoration: none;
+    text-decoration: uppercase;
 }
 
 .destination_display {
     background-color: white;
     padding: 10px;
+
+    &::before {
+
+    }
 }
+
 
 li {
     margin: 10px;
