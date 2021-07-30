@@ -41,6 +41,8 @@ const firstApi = async function(location) {
   const geoLng = Math.round(resJ.geonames[0].lng)
   const geoCountry = resJ.geonames[0].countryCode
   const geoName = resJ.geonames[0].name
+  VacationData['cityName'] = geoName
+  VacationData['countryCode'] = geoCountry
   VacationData['LatGeo']  = geoLat
   VacationData['LngGeo']  = geoLng
   console.log(VacationData.LatGeo,VacationData.LngGeo)  
@@ -54,18 +56,15 @@ const secApi = async function(lat,lon,city,country) {
   let dataLength = Number(dateArray.length - 1)
   console.log(dataLength, typeof(dataLength))
   const nameOfCity = resJ.data[0].city_name
-  const codeOfCountry = resJ.data[0].country_code
   const weatherDes = resJ.data[0].weather.description
   const iconWeather = resJ.data[0].weather.icon
   const weatherDes2 = resJ.data[dataLength].weather.description
   const iconWeather2 = resJ.data[dataLength].weather.icon
-  VacationData['cityName'] = nameOfCity
-  VacationData['countryCode'] = codeOfCountry
   VacationData['des'] = weatherDes
   VacationData['icon'] = iconWeather
   VacationData['descriptionTwo'] = weatherDes2
   VacationData['iconTwo'] = iconWeather2
-  console.log(VacationData.cityName, VacationData.countryCode,VacationData.des,VacationData.icon, VacationData.descriptionTwo)
+  console.log(VacationData.des,VacationData.icon, VacationData.descriptionTwo)
   return await fourthApi(nameOfCity)
 }
 
