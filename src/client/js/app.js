@@ -24,6 +24,14 @@ travelBtn.addEventListener('click', findDestion)
 export async function findDestion(e) {
   e.preventDefault()
   let locationValue = document.getElementById('F1').value;
+  let LeaveDate = document.getElementById('F2').value
+  let ReturnDate = document.getElementById('F3').value
+
+  // let LeaveD = new Date(LeaveDate)
+  // let ReturnD = new Date(ReturnDate)
+  // let timeDiff = Number((ReturnD.getTime() - LeaveD.getTime()) + 1)
+  console.log(LeaveDate," ", ReturnDate)
+
   await firstApi(locationValue);
   await postData(VacationData);
   console.log(VacationData);
@@ -53,18 +61,18 @@ const secApi = async function(lat,lon,country,code) {
   const cityLongitude = Math.round(resJ.data[0].lon)
   VacationData['cityName'] = nameOfCity
   VacationData['countryCode'] = codeOfCountry
-  VacationData['description'] = weatherDes
+  VacationData['des'] = weatherDes
   VacationData['icon'] = iconWeather
-  console.log(VacationData.cityName, VacationData.countryCode,VacationData.description,VacationData.icon)
+  console.log(VacationData.cityName, VacationData.countryCode,VacationData.des,VacationData.icon)
   return await thirdApi(cityLatitude,cityLongitude,nameOfCity,codeOfCountry)
 }
 
 const thirdApi = async function(lat,lon,city,country) {
   const res = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&city=${city}&country=${country}&key=${wApi}`)
   const resJ = await res.json();
-  const cityName = res.city_name
-  const dayOne = res.data[0].weather.description
-  const daySixteen = res.data[8].weather.description
+  const cityName = resJ.city_name
+  const dayOne = resJ.data[0].weather.description
+  const daySixteen = resJ.data[5].weather.description
   VacationData['dayOne'] = dayOne
   VacationData['daySixteen'] = daySixteen
   console.log(VacationData.dayOne,VacationData.daySixteen)
@@ -93,6 +101,7 @@ async function postData(data) {
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
        // Body data type must match "Content-Type" header        
         body: JSON.stringify({data:data}),
