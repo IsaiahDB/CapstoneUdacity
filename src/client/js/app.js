@@ -27,11 +27,6 @@ export async function findDestion(e) {
   let LeaveDate = document.getElementById('F2').value
   let ReturnDate = document.getElementById('F3').value
 
-  // let LeaveD = new Date(LeaveDate)
-  // let ReturnD = new Date(ReturnDate)
-  // let timeDiff = Number((ReturnD.getTime() - LeaveD.getTime()) + 1)
-  console.log(LeaveDate," ", ReturnDate)
-
   await firstApi(locationValue);
   await postData(VacationData);
   console.log(VacationData);
@@ -50,34 +45,26 @@ const firstApi = async function(location) {
   return await secApi(geoLat,geoLng,geoName,geoCountry)
 }
 
-const secApi = async function(lat,lon,country,code) {
-  const res = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&city=${country}&country=${code}&key=${wApi}&include=minutely`)
+const secApi = async function(lat,lon,city,country) {
+  const res = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&city=${city}&country=${country}&key=${wApi}`)
   const resJ = await res.json();
+  let dateArray = resJ.data
+  let dataLength = Number(dateArray.length - 1)
+  console.log(dataLength, typeof(dataLength))
   const nameOfCity = resJ.data[0].city_name
   const codeOfCountry = resJ.data[0].country_code
   const weatherDes = resJ.data[0].weather.description
   const iconWeather = resJ.data[0].weather.icon
-  const cityLatitude = Math.round(resJ.data[0].lat)
-  const cityLongitude = Math.round(resJ.data[0].lon)
+  const weatherDes2 = resJ.data[dataLength].weather.description
+  const iconWeather2 = resJ.data[dataLength].weather.icon
   VacationData['cityName'] = nameOfCity
   VacationData['countryCode'] = codeOfCountry
   VacationData['des'] = weatherDes
   VacationData['icon'] = iconWeather
-  console.log(VacationData.cityName, VacationData.countryCode,VacationData.des,VacationData.icon)
-  return await thirdApi(cityLatitude,cityLongitude,nameOfCity,codeOfCountry)
-}
-
-const thirdApi = async function(lat,lon,city,country) {
-  const res = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&city=${city}&country=${country}&key=${wApi}`)
-  const resJ = await res.json();
-  const cityName = resJ.city_name
-  const dayOne = resJ.data[0].weather.description
-  const daySixteen = resJ.data[5].weather.description
-  VacationData['dayOne'] = dayOne
-  VacationData['daySixteen'] = daySixteen
-  console.log(VacationData.dayOne,VacationData.daySixteen)
-  return await fourthApi(cityName)
-
+  VacationData['descriptionTwo'] = weatherDes2
+  VacationData['iconTwo'] = iconWeather2
+  console.log(VacationData.cityName, VacationData.countryCode,VacationData.des,VacationData.icon, VacationData.descriptionTwo)
+  return await fourthApi(nameOfCity)
 }
 
 const fourthApi = async function(picLoc) {
@@ -101,7 +88,6 @@ async function postData(data) {
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
         },
        // Body data type must match "Content-Type" header        
         body: JSON.stringify({data:data}),
