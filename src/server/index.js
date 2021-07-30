@@ -38,9 +38,9 @@ function addData(req, res) {
     console.log('server side data ', data)
     projectData['lattitude'] = data.lat;
     projectData['longitutde'] = data.lng;
-    projectData['city'] = data.city;
+    projectData['city'] = data.city_name;
     projectData['image'] = data.image;
-    projectData['country'] = data.country;
+    projectData['country'] = data.countryCode;
     projectData['description'] = data.description;
     projectData['icon'] = data.icon;
     projectData['OneDay'] = data.one;

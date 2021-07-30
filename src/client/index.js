@@ -1,8 +1,10 @@
 
 import { findDestion } from './js/app';
+import { checkDate } from './js/checkDate'
 
 export {
-    findDestion
+    findDestion,
+    checkDate
 }
 
 import './style/base.scss';

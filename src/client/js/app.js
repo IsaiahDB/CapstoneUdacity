@@ -27,6 +27,8 @@ export async function findDestion(e) {
   let LeaveDate = document.getElementById('F2').value
   let ReturnDate = document.getElementById('F3').value
 
+  Client.checkDate(LeaveDate,ReturnDate);
+
   await firstApi(locationValue);
   await postData(VacationData);
   console.log(VacationData);
@@ -90,7 +92,7 @@ async function postData(data) {
             'Content-Type': 'application/json',
         },
        // Body data type must match "Content-Type" header        
-        body: JSON.stringify({data:data}),
+        body: JSON.stringify(data),
     });
     console.log(res)
     try {
