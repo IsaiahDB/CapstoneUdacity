@@ -1,11 +1,3 @@
-const travelBtn = document.getElementById('destination-button')
-//const formOne = document.getElementById('F1')
-const formTwo = document.getElementById('F2')
-const formThree = document.getElementById('F3')
-
-// const geoUser = process.env.GEO_USER  
-// const wApi = process.env.WEATHER_API_KEY   
-// const pApi = process.env.PIXABY_API_KEY 
 
 const wApi = '74c95ff83482407db3c55956cd979f60'
 const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
