@@ -1,3 +1,5 @@
+const travelBtn = document.getElementById('destination-button')
+
 
 const wApi = '74c95ff83482407db3c55956cd979f60'
 const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
