@@ -77,21 +77,12 @@ const fourthApi = async function(picLoc) {
 }
 
 const UpdateUi = async () => {
-  const request = await fetch("http://localhost:8080/all", {
-    method: "GET",
-    credentials: 'same-origin',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify()
-  })
-  try {
-    const resData = await request.json()
-    document.getElementById("itemOne").innerHTML = `City: ${resData.city}`
-    document.getElementById("itemTwo").innterHTML = `Random: ${resData.descriptionTwo}`
-    console.log(resData)
-  } catch(error) {
-    console.log("no item", error)
-  }
-
+  const request = await fetch("http://localhost:8080/all")
+  const resData = await request.json()
+  document.getElementById("itemOne").innerHTML = `City: ${resData.city}`
+  document.getElementById("itemTwo").innerHTML = `Random: ${resData.descriptionTwo}`
+  document.getElementById("destination_information").style.display = "block"
+  console.log(resData)
 }
 
 
