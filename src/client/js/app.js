@@ -25,6 +25,7 @@ export async function findDestion(e) {
 
   await firstApi(locationValue);
   await postData(VacationData);
+  await UpdateUi();
   console.log(VacationData);
 }
 
@@ -35,11 +36,11 @@ const firstApi = async function(location) {
   const geoLng = Math.round(resJ.geonames[0].lng)
   const geoCountry = resJ.geonames[0].countryCode
   const geoName = resJ.geonames[0].name
-  VacationData['cityName'] = geoName
-  VacationData['countryCode'] = geoCountry
-  VacationData['LatGeo']  = geoLat
-  VacationData['LngGeo']  = geoLng
-  console.log(VacationData.LatGeo,VacationData.LngGeo)  
+  VacationData['city'] = geoName
+  VacationData['country'] = geoCountry
+  VacationData['lattitude']  = geoLat
+  VacationData['longitutde']  = geoLng
+  //console.log(VacationData.LatGeo,VacationData.LngGeo)  
   return await secApi(geoLat,geoLng,geoName,geoCountry)
 }
 
@@ -54,11 +55,11 @@ const secApi = async function(lat,lon,city,country) {
   const iconWeather = resJ.data[0].weather.icon
   const weatherDes2 = resJ.data[dataLength].weather.description
   const iconWeather2 = resJ.data[dataLength].weather.icon
-  VacationData['des'] = weatherDes
+  VacationData['description'] = weatherDes
   VacationData['icon'] = iconWeather
   VacationData['descriptionTwo'] = weatherDes2
   VacationData['iconTwo'] = iconWeather2
-  console.log(VacationData.des,VacationData.icon, VacationData.descriptionTwo)
+  //console.log(VacationData.des,VacationData.icon, VacationData.descriptionTwo)
   return await fourthApi(nameOfCity)
 }
 
@@ -70,9 +71,27 @@ const fourthApi = async function(picLoc) {
   // } else {
   //   VacationData['locationImage'] = resJ.hits[0].webformatURL 
   // }
-  VacationData['locationImage'] = resJ.hits[0].previewURL 
-  console.log(VacationData.locationImage)
+  VacationData['image'] = resJ.hits[0].previewURL 
+  //console.log(VacationData.locationImage)
   return VacationData
+}
+
+const UpdateUi = async () => {
+  const request = await fetch("http://localhost:8080/all", {
+    method: "GET",
+    credentials: 'same-origin',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify()
+  })
+  try {
+    const resData = await request.json()
+    document.getElementById("itemOne").innerHTML = `City: ${resData.city}`
+    document.getElementById("itemTwo").innterHTML = `Random: ${resData.descriptionTwo}`
+    console.log(resData)
+  } catch(error) {
+    console.log("no item", error)
+  }
+
 }
 
 
@@ -90,7 +109,6 @@ async function postData(data) {
     console.log(res)
     try {
       const newTravelData = await res.json();
-      console.log(newTravelData);
       return newTravelData;
     }catch(error) {
       console.log("error", error);

@@ -8,7 +8,7 @@ export function checkDate(LeaveDate,ReturnDate) {
     console.log(dateCalc + " days");
 
     if(dateCalc >= 7){
-        console.log('Trip must be within 7 days',error)
+        console.error('Trip must be within 7 days')
     } else{
         return dateCalc
     }

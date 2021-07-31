@@ -27,7 +27,7 @@ app.listen(8080, function () {
 })
 
 
-app.get('/all', function sendData(request,response ){
+app.get('/all', function sendData(request,response){
     response.send(projectData)
 });
 
@@ -36,15 +36,15 @@ app.post('/vactionData', addData);
 function addData(req, res) {
     let data = req.body;
     console.log('server side data ', data)
-    projectData['lattitude'] = data.lat;
-    projectData['longitutde'] = data.lng;
+    projectData['lattitude'] = data.lattitude;
+    projectData['longitutde'] = data.longitutde;
     projectData['city'] = data.city;
     projectData['image'] = data.image;
     projectData['country'] = data.country;
     projectData['description'] = data.description;
     projectData['icon'] = data.icon;
-    projectData['OneDay'] = data.one;
-    projectData['SixteenDay'] = data.sixteen;
+    projectData['descriptionTwo'] = data.descriptionTwo;
+    projectData['iconTwo'] = data.iconTwo;
 
     res.send(projectData);
 }
