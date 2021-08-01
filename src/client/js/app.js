@@ -65,6 +65,7 @@ const secApi = async function(lat,lon,city,country) {
 
 const fourthApi = async function(pic) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${pic}&image_type=photo`)
+  
   const resJ = await res.json()
   if(resJ.hits[0].webformatURL === 'undefined'){
     VacationData['image'] = 'no photo'
