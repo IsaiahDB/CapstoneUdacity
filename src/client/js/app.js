@@ -24,6 +24,7 @@ export async function findDestion(e) {
   Client.checkDate(LeaveDate,ReturnDate);
 
   await firstApi(locationValue);
+  await thirdApi(VacationData.city);
   await postData(VacationData);
   await Client.updateUi();
   console.log(VacationData);
@@ -60,20 +61,20 @@ const secApi = async function(lat,lon,city,country) {
   VacationData['descriptionTwo'] = weatherDes2
   VacationData['iconTwo'] = iconWeather2
   //console.log(VacationData.des,VacationData.icon, VacationData.descriptionTwo)
-  return await fourthApi(nameOfCity)
+  return VacationData
 }
 
-const fourthApi = async function(pic) {
+const thirdApi = async function(picloc) {
   //const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${pic}&image_type=photo`)
-  const res = await fetch('https://pixabay.com/api/?key='+pApi+'&q='+pic+'&image_type=photo')
+  const res = await fetch(`https://pixabay.com/api/?key=13827219-eabca8d6c1f49e20bd7fd6c27&q=${picloc}&image_type=photo`)
   
   const resJ = await res.json()
-  if(resJ.hits[0].largeImageURL === 'undefined'){
+  if(resJ.hits[0].previewURL === 'undefined'){
     VacationData['imageloc'] = 'no photo'
   } else {
-    VacationData['imageloc'] = resJ.hits[0].largeImageURL 
+    VacationData['imageloc'] = resJ.hits[0].previewURL 
   } 
-  console.log(VacationData.image)
+  console.log(VacationData.imageloc)
   return VacationData
 }
 
