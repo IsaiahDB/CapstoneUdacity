@@ -14,4 +14,3 @@ import './style/containerpiece.scss';
 import './style/destinationInfo.scss'
 import './style/header.scss';
 import './style/pdfButton.scss';
-import './images/lotusPeach.jpg';

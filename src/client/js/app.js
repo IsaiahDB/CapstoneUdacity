@@ -1,9 +1,9 @@
 const travelBtn = document.getElementById('destination-button')
 
 
-const wApi = '74c95ff83482407db3c55956cd979f60'
-const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27'
-const geoUser = 'isaiah'
+const wApi = '74c95ff83482407db3c55956cd979f60';
+const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27';
+const geoUser = 'isaiah';
 
 
 //http://api.geonames.org/searchJSON?username=maykeloenning&maxRows=10&q="
@@ -25,7 +25,7 @@ export async function findDestion(e) {
 
   await firstApi(locationValue);
   await postData(VacationData);
-  await Client.UpdateUi();
+  await Client.updateUi();
   console.log(VacationData);
 }
 
@@ -63,15 +63,15 @@ const secApi = async function(lat,lon,city,country) {
   return await fourthApi(nameOfCity)
 }
 
-const fourthApi = async function(picLoc) {
-  const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
+const fourthApi = async function(pic) {
+  const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${pic}&image_type=photo`)
   const resJ = await res.json()
   if(resJ.hits[0].webformatURL === 'undefined'){
     VacationData['image'] = 'no photo'
   } else {
-    VacationData['image'] = resJ.hits[0].previewURL 
+    VacationData['image'] = resJ.hits[0].webformatURL 
   } 
-  //console.log(VacationData.locationImage)
+  console.log(VacationData.image)
   return VacationData
 }
 
