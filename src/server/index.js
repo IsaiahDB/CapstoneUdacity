@@ -39,7 +39,7 @@ function addData(req, res) {
     projectData['lattitude'] = data.lattitude;
     projectData['longitutde'] = data.longitutde;
     projectData['city'] = data.city;
-    projectData['image'] = data.image;
+    projectData['imageloc'] = data.imageloc;
     projectData['country'] = data.country;
     projectData['description'] = data.description;
     projectData['icon'] = data.icon;

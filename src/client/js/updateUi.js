@@ -6,7 +6,7 @@ const updateUi = async () => {
     document.getElementById("itemOne").innerHTML = `City: ${resData.city}`
     document.getElementById("itemTwo").innerHTML = `Weather: ${resData.description}`
     document.getElementById('itemThree').innerHTML = `Country: ${resData.country}`
-    document.getElementById('itemFour').setAttribute('src', resData.image)
+    document.getElementById('itemFour').setAttribute('src', resData.imageloc)
 
     document.getElementById("destination_information").style.display = "block"
     console.log(resData)
