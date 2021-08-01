@@ -1,10 +1,12 @@
 
 import { findDestion } from './js/app';
-import { checkDate } from './js/checkDate'
+import { checkDate } from './js/checkDate';
+import { updateUi } from './js/updateUi'
 
 export {
     findDestion,
-    checkDate
+    checkDate,
+    updateUi
 }
 
 import './style/base.scss';

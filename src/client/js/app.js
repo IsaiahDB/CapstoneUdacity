@@ -25,7 +25,7 @@ export async function findDestion(e) {
 
   await firstApi(locationValue);
   await postData(VacationData);
-  await UpdateUi();
+  await Client.UpdateUi();
   console.log(VacationData);
 }
 
@@ -66,25 +66,14 @@ const secApi = async function(lat,lon,city,country) {
 const fourthApi = async function(picLoc) {
   const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${picLoc}&image_type=photo`)
   const resJ = await res.json()
-  // if(resJ.hits[0].webformatURL === 'undefined'){
-  //   VacationData['locationImage'] = "no photo"
-  // } else {
-  //   VacationData['locationImage'] = resJ.hits[0].webformatURL 
-  // }
-  VacationData['image'] = resJ.hits[0].previewURL 
+  if(resJ.hits[0].webformatURL === 'undefined'){
+    VacationData['image'] = 'no photo'
+  } else {
+    VacationData['image'] = resJ.hits[0].previewURL 
+  } 
   //console.log(VacationData.locationImage)
   return VacationData
 }
-
-const UpdateUi = async () => {
-  const request = await fetch("http://localhost:8080/all")
-  const resData = await request.json()
-  document.getElementById("itemOne").innerHTML = `City: ${resData.city}`
-  document.getElementById("itemTwo").innerHTML = `Random: ${resData.descriptionTwo}`
-  document.getElementById("destination_information").style.display = "block"
-  console.log(resData)
-}
-
 
 async function postData(data) {
     console.log(data)
@@ -94,7 +83,7 @@ async function postData(data) {
         headers: {
             'Content-Type': 'application/json',
         },
-       // Body data type must match "Content-Type" header        
+       
         body: JSON.stringify(data),
     });
     console.log(res)
