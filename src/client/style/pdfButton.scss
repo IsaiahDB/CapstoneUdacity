@@ -1,6 +1,7 @@
 #pdf-button {
     font-size: medium;
     padding: 12px;
+    margin-top: 20px;
     margin-bottom: 20px;
     position: relative;
     left: 45%;
@@ -10,10 +11,10 @@
     display: none;
 }
 
-.pdf-button:hover {
+#pdf-button:hover {
     background-color: lightcoral;
 }
-.pdf-button:active {
+#pdf-button:active {
     background-color: #ca7a8c;
     box-shadow: 0 5px rgb(226, 59, 176);
     transform: translateY(4px);

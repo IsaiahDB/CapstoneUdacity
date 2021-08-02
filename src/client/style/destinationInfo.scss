@@ -4,11 +4,19 @@
 }
 .destination_display {
     background-color: white;
-    margin: 40px 50px;
+    margin: auto;
     padding: 10px;
     border-radius: 10px;
+    max-width: 350px;
+    // position: relative;
+    // left: 35%;
+    text-align: center;
+
 }
+
+
 
 li {
     margin: 10px;
+    list-style: none;
 }
