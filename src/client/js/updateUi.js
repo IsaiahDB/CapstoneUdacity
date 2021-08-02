@@ -8,7 +8,7 @@ const updateUi = async () => {
     document.getElementById('itemThree').innerHTML = `Country: ${resData.country}`
     document.getElementById('itemFour').setAttribute('src', resData.imageloc)
     document.getElementById("destination_information").style.display = "block"
-    document.getElementById('.pdf-button').style.display = "block"
+    document.getElementById('pdf-button').style.display = "block"
     console.log(resData)
   }
 
