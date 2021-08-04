@@ -1,12 +1,14 @@
 
 import { findDestion } from './js/app';
 import { checkDate } from './js/checkDate';
-import { updateUi } from './js/updateUi'
+import { updateUi } from './js/updateUi';
+import { pdfConverter } from './js/pdfConverter';
 
 export {
     findDestion,
     checkDate,
-    updateUi
+    updateUi,
+    pdfConverter
 }
 
 import './style/base.scss';
