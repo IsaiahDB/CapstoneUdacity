@@ -1,10 +1,12 @@
+const html2pdf = require('html2pdf.js')
+
 
 const pdfClick = document.getElementById("pdf-button")
 
 pdfClick.addEventListener('click', pdfConverter)
 
 function pdfConverter() {
-    var ele = document.getElementById('itemTwo');
+    let ele = document.getElementById('destination_information');
     return html2pdf(ele)
 }
 
