@@ -26,6 +26,16 @@ app.listen(8080, function () {
     console.log('Example app listening on port 8080!')
 })
 
+app.get('/serverconnected', function (req, res) {                       
+    res.json({
+        name: 'isaiah',
+        appName: 'travelappcapstone',
+        grader: 'udacity',
+        server: 'connected'
+    });
+})
+
+
 
 app.get('/all', function sendData(request,response){
     response.send(projectData)
@@ -48,3 +58,6 @@ function addData(req, res) {
 
     res.send(projectData);
 }
+
+
+module.exports = app

@@ -1,4 +1,6 @@
 
+
+//Checks if the date input is within 7 days
 export function checkDate(LeaveDate,ReturnDate) {
     
     let lDate = new Date(LeaveDate)

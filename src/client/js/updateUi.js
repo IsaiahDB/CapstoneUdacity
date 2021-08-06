@@ -1,5 +1,5 @@
 
-
+//Will update UI of the APP
 const updateUi = async () => {
     const request = await fetch("http://localhost:8080/all")
     const resData = await request.json()

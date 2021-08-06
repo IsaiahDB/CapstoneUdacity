@@ -6,15 +6,11 @@ const pApi = '13827219-eabca8d6c1f49e20bd7fd6c27';
 const geoUser = 'isaiah';
 
 
-//http://api.geonames.org/searchJSON?username=maykeloenning&maxRows=10&q="
-//http://api.geonames.org/searchJSON?q=london&maxRows=10&username=demo
-
-
 let VacationData = {}
 
 travelBtn.addEventListener('click', findDestion)
 
-
+//Take vacation data and call six other functions.
 export async function findDestion(e) {
   e.preventDefault()
   let locationValue = document.getElementById('F1').value;
@@ -30,6 +26,7 @@ export async function findDestion(e) {
   console.log(VacationData);
 }
 
+//Function fetches geoname.org api and inputs data into VacationData object
 const firstApi = async function(location) {
   const res = await fetch(`http://api.geonames.org/searchJSON?username=${geoUser}&maxRows=10&q=${location}`)
   const resJ = await res.json();
@@ -45,6 +42,8 @@ const firstApi = async function(location) {
   return await secApi(geoLat,geoLng,geoName,geoCountry)
 }
 
+
+//Function fetches weatherbit forecast api and inputs data into VacationData object
 const secApi = async function(lat,lon,city,country) {
   const res = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&city=${city}&country=${country}&key=${wApi}`)
   const resJ = await res.json();
@@ -64,8 +63,8 @@ const secApi = async function(lat,lon,city,country) {
   return VacationData
 }
 
+//Function fetches pixabay api and inputs data into VacationData object
 const thirdApi = async function(picloc) {
-  //const res = await fetch(`https://pixabay.com/api/?key=${pApi}&q=${pic}&image_type=photo`)
   const res = await fetch(`https://pixabay.com/api/?key=13827219-eabca8d6c1f49e20bd7fd6c27&q=${picloc}&image_type=photo`)
   
   const resJ = await res.json()
@@ -77,7 +76,7 @@ const thirdApi = async function(picloc) {
   console.log(VacationData.imageloc)
   return VacationData
 }
-
+//Function fetches projectdata endpoint from server
 async function postData(data) {
     console.log(data)
       const res = await fetch("http://localhost:8080/vactionData", {

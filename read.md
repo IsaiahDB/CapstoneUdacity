@@ -27,6 +27,17 @@ Geonames API, Weatherbit API using the Forecast API, and Pixabay API
  * update HTML with location and weather data
 
 
+## __TEST__ File
+
+* datechecker.test.js 
+ * This will test if checkDate will return a number
+
+* server.test.js
+ * This will test the server endpoint is connected. 
+
+
+
+
 
 
 
